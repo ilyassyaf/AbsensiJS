@@ -1,0 +1,30 @@
+.page{
+    display: none;
+}
+.active{
+    display: block; 
+}
+.centerText{
+    text-align: center;
+}
+.overflow-x{
+    overflow-x:auto;
+}
+td.nowrap{
+    white-space:nowrap;
+}
+td.date:hover{
+    background-color: yellow;
+}
+input, select, label {
+    all: initial;
+}
+label {
+    text-align: left;
+}
+thead {
+    font-weight: bold;
+}
+div.ColVis {
+    float: left;
+}

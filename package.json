@@ -1,0 +1,25 @@
+{
+  "name": "absensi-new",
+  "version": "1.0.0",
+  "description": "Aplikasi absensi karyawan PT. Telkom Witel Semarang",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [
+    "absensi",
+    "firebase",
+    "javascript"
+  ],
+  "author": "Mukhamad Ilyas Syafi'i",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyassyaf/AbsensiJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ilyassyaf/AbsensiJS/issues"
+  },
+  "homepage": "https://github.com/ilyassyaf/AbsensiJS#readme"
+}

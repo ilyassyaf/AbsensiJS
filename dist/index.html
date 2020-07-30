@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Import Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.1/css/fixedColumns.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Portal Telkom</title>
+</head>
+
+<body class="grey lighten-3">
+    <!-- NAVBAR -->
+    <nav class="nav-wrapper red darken-1">
+        <div class="container">
+            <a class="brand-logo">Portal Telkom</a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#" data-target="home" class="nav-link">Dashboard</a></li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" onclick="closeSidenav()" class="nav-link" data-target="account-panel">Account</a>
+                </li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" onclick="closeSidenav()" class="nav-link" data-target="summary">Log Presensi</a>
+                </li>
+                <li class="admin" style="display: none;">
+                    <a href="#" class="nav-link" data-target="admin-panel">Admin Page</a>
+                </li>
+                <!--<li class="logged-out" style="display: none;">
+                    <a href="#" class="modal-trigger" data-target="modal-signup">Sign up</a>
+                </li>-->
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="" id="logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-links">
+        <li><a href="#" onclick="closeSidenav()" class="nav-link" data-target="home">Dashboard</a></li>
+        <li class="logged-in" style="display: none;">
+            <a href="#" onclick="closeSidenav()" class="nav-link" data-target="account-panel">Account</a>
+        </li>
+        <li class="logged-in" style="display: none;">
+            <a href="#" onclick="closeSidenav()" class="nav-link" data-target="summary">Log Presensi</a>
+        </li>
+        <li class="admin" style="display: none;">
+            <a href="#" onclick="closeSidenav()" class="nav-link" data-target="admin-panel">Admin Page</a>
+        </li>
+        <!--<li class="logged-out" style="display: none;">
+            <a href="#" class="modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>-->
+        <li class="logged-in" style="display: none;">
+            <a href="#" class="" id="logout">Logout</a>
+        </li>
+    </ul>
+
+    <!-- PAGES -->
+    <div class="container center-align">
+        <div class="page active" id="home">
+            <div class="card-panel">
+                <div class="center-align logged-in" style="display: none;">
+                    <p id="clock" style="margin: 0px; font-size: 40px; font-family: 'Orbitron', sans-serif;">00:00:00</p>
+                    <p id="date" style="margin: 0px; font-size: 24px;"></p>
+                </div>
+                <div class="center-align attendance" style="margin: 40px; display: none;"></div>
+                <!-- HISTORY LIST -->
+                <div class="logged-in">
+                    <table>
+                        <th>Riwayat Pesensi</th>
+                    </table>
+                </div>
+                <div class="login-panel"></div>
+                <div style="margin-top: 40px;">
+                    <ul class="collapsible z-depth-0 histories" style="border: none;"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="page card-panel" id="summary">
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+        </div>
+
+        <div class="page" id="account-panel">
+            <div class="card-panel account-details"></div>
+        </div>
+
+        <div class="page" id="admin-panel">
+            <!-- ADMIN ACTIONS -->
+            <div class="card-panel">
+                <form class="input-field center-align admin-actions admin"
+                    style="margin: 40px auto; max-width: 300px;display: none;">
+                    <input type="email" id="admin-email" required>
+                    <label for="admin-email">User Email</label>
+                    <button class="btn-small green darken-2 waves-effect waves-light">Make Admin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Sign up</h4><br />
+            <form id="signup-form">
+                <input type="hidden" id="uid">
+                <input type="hidden" id="email">
+                <div class="input-field">
+                    <input type="text" id="signup-name" required />
+                    <label for="signup-name">Nama</label>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="signup-nik" required />
+                    <label for="signup-nik">NIK</label>
+                </div>
+                <button class="btn green darken-2 z-depth-0">Sign up</button>
+                <button id="logout" class="right btn red lightn-2 z-depth-0">Log Out</button>
+                <p class="error pink-text center-align"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-functions.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script src="scripts/firebase.js"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/3.3.1/js/dataTables.fixedColumns.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script src="./scripts/lib/moment.min.js"></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/router.js"></script>
+    <script src="./scripts/api.js"></script>
+
+</body>
+
+</html>
